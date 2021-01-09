@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin{% endblock %}
+
+   {% block titre %}Administration{% endblock %}
+
+{% block body %}
+
+{% for flash in app.flashes('success') %}
+   <div class="alert alert-success">
+      {{ flash }}
+   </div>
+{% endfor %}
+{% for flash in app.flashes('danger') %}
+   <div class="alert alert-warning">
+      {{ flash }}
+   </div>
+{% endfor %}
+<a href="{{ path('admin_create')}}" class="btn btn-success ml-5 my-3 w-25">Ajouter un nouveau aliment</a>
+<div class="row container d-flex justify-content-around m-auto">
+
+   <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Image</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Prix</th>
+      <th scope="col">Calorie</th>
+      <th scope="col">Proteine</th>
+      <th scope="col">Lipide</th>
+      <th scope="col">Glucide</th>
+      <th scope="col">Modifier</th>
+      <th scope="col">Supprimer</th>
+    </tr>
+  </thead>
+  {% for aliment in aliments %}
+  <tbody>
+    <tr class="table-secondary">
+      <td><img class="imageAdmin" src="{{ asset('/image/aliments/' ~ aliment.image) }}" alt="{{ aliment.nom }}"></td>
+      <td>{{ aliment.nom }}</td>
+      <td>{{ aliment.prix }} € /Kg</td>
+      <td>{{ aliment.calorie }}</td>
+      <td>{{ aliment.proteine }}</td>
+      <td>{{ aliment.lipide }}</td>
+      <td>{{ aliment.glucide }}</td>
+      <td><a href="{{ path('admin_update', {'id': aliment.id}) }}" class="btn btn-info">Modifier</a></td>
+      <td>
+      <form method="POST" action="{{ path('admin_delete', {'id': aliment.id}) }}" onsubmit="return confirm('Confirmer la supression')">
+         <input type="hidden" name="_method" value="DELETE">
+         <input type="hidden" name="_token" value="{{ csrf_token('SUP' ~ aliment.id)}}">
+         <input class="btn btn-danger" type="submit" value="Supprimer">
+      </form>
+      </td>
+    </tr>
+  </tbody>
+  {% endfor %}
+</table>
+</div>
+{% endblock %}

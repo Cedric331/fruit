@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Aliments{% endblock %}
+
+   {% block titre %}Information sur l'aliment {{ aliment[0].nom }}{% endblock %}
+
+{% block body %}
+{% for ali in aliment %}
+<div class="row container d-flex justify-content-around m-auto">
+
+   <div class="card col-3" style="width: 18rem;">
+      <img src="{{ asset('/image/aliments/' ~ aliment.image) }}" style="max-height:150px;" class="mt-2 card-img-top" alt="{{ ali.nom }}">
+      <div class="card-body">
+         <h4 class="card-title row-cols-2 text-center">{{ ali.nom }}</h4>
+         <hr>
+         <ul>
+            <li>Prix: {{ ali.prix }}</li>
+            <li>Proteine: {{ ali.proteine }}</li>
+            <li>Glucide: {{ ali.glucide }}</li>
+            <li>Lipide: {{ ali.lipide }}</li>
+         </ul>
+         <a href="#" class="w-100 btn btn-primary">{{ ali.nom }}</a>
+      </div>
+   </div>
+{% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin{% endblock %}
+
+
+   {% block titre %}
+      {% if(isUpdate) %}
+         Administration Update {{aliment.nom}}
+      {% else %}
+         Administration Création
+      {% endif %}
+   {% endblock %}
+
+{% block body %}
+
+ {{ form_start(form) }}
+   <div class="row container m-auto">
+      <div class="col-6">
+      {% if(isUpdate) %}
+            <img src="{{ asset('/image/aliments/' ~ aliment.image) }}" style="width:20%;">
+      {% endif %}
+            <div>{{ form_row(form.imageFile) }}</div>
+            <div>{{ form_row(form.nom, {'attr': {'class': 'text-dark'}, "label": "Nom de l'aliment"}) }}</div>
+      </div>
+
+      <div class="col-6">
+         {{ form_widget(form) }}
+      </div>
+   <input type="submit" class="btn btn-primary" value="Valider">
+
+   </div>
+{{ form_end(form) }}
+
+{% endblock %}
