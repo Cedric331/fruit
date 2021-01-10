@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AdminSecureController extends AbstractController
@@ -38,11 +39,14 @@ class AdminSecureController extends AbstractController
     }
 
     /**
-     * @Route("/admin/login", name="admin_login")
+     * @Route("/login", name="admin_login")
      */
-    public function login()
+    public function login(AuthenticationUtils $auth)
     {
-      return $this->render('admin_secure/login.html.twig');
+      return $this->render('admin_secure/login.html.twig', [
+         'lastUsername' => $auth->getLastUsername(),
+         "error" => $auth->getLastAuthenticationError()
+      ]);
     }
 
         /**

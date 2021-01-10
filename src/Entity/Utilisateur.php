@@ -39,6 +39,11 @@ class Utilisateur implements UserInterface
      */
     private $password_confirm;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Roles;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -82,7 +87,7 @@ class Utilisateur implements UserInterface
 
     public function getRoles()
     {
-        return ['ROLE_USER'];
+        return [$this->Roles];
     }
 
     public function eraseCredentials()
@@ -93,5 +98,18 @@ class Utilisateur implements UserInterface
     public function getSalt()
     {
 
+    }
+
+    public function setRoles(?string $Roles): self
+    {
+       if($Roles == null)
+       { 
+         $this->Roles = "ROLE_USER";
+       }
+       else{
+         $this->Roles = $Roles;
+       }
+
+        return $this;
     }
 }

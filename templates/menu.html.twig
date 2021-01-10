@@ -12,8 +12,10 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item text-white" href="{{ path('aliments')}}">Liste des Aliments</a></li>
+            {% if is_granted('ROLE_ADMIN') %}
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item text-white" href="{{ path('admin_admin')}}">Administration</a></li>
+            {% endif %}
           </ul>
         </li>
             <li class="nav-item dropdown">
@@ -22,8 +24,10 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item text-white" href="{{ path('types')}}">Liste des Types</a></li>
+            {% if is_granted('ROLE_ADMIN') %}
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item text-white" href="{{ path('admin_type')}}">Administration</a></li>
+            {% endif %}
           </ul>
         </li>
 
@@ -32,10 +36,13 @@
             Compte
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          {% if not app.user %}
             <li><a class="dropdown-item text-white" href="{{ path('admin_register')}}">Inscription</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item text-white" href="{{ path('admin_login')}}">Connexion</a></li>
+         {% else %}
             <li><a class="dropdown-item text-white" href="{{ path('admin_logout')}}">Déconnexion</a></li>
+          {% endif %}
           </ul>
         </li>
 

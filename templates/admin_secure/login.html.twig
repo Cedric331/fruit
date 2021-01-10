@@ -4,17 +4,22 @@
 {% block titre %}Connexion{% endblock %}
 
 {% block body %}
-
-<form action="{{ path('admin_login')}}" method="POST">
-  <div class="mb-3">
-    <label for="username" class="form-label">Nom d'utilisateur</label>
-    <input type="text" class="form-control" name="_username" id="username" required>
-  </div>
-  <div class="mb-3">
-    <label for="password" class="form-label">Mot de passe</label>
-    <input type="password" name="_password" class="form-control" id="password">
-  </div>
-  <input type="submit" class="btn btn-primary" value="Connexion">
-</form>
-
+{% if error %}
+<div class="alert alert-danger">
+   {{ error.messageKey | trans(error.messageData, 'security') }}
+</div>
+{% endif %}
+<div class="container">
+   <form action="{{ path('admin_login')}}" method="POST">
+     <div class="mb-3">
+       <label for="username" class="form-label">Nom d'utilisateur</label>
+       <input type="text" class="form-control" name="_username" id="username" required>
+     </div>
+     <div class="mb-3">
+       <label for="password" class="form-label">Mot de passe</label>
+       <input type="password" name="_password" class="form-control" id="password">
+     </div>
+     <input type="submit" class="btn btn-primary" value="Connexion">
+   </form>
+</div>
 {% endblock %}
