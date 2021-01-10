@@ -29,6 +29,7 @@
       <th scope="col">Proteine</th>
       <th scope="col">Lipide</th>
       <th scope="col">Glucide</th>
+      <th scope="col">Type</th>
       <th scope="col">Modifier</th>
       <th scope="col">Supprimer</th>
     </tr>
@@ -43,6 +44,7 @@
       <td>{{ aliment.proteine }}</td>
       <td>{{ aliment.lipide }}</td>
       <td>{{ aliment.glucide }}</td>
+      <td>{{ aliment.type.libelle }}</td>
       <td><a href="{{ path('admin_update', {'id': aliment.id}) }}" class="btn btn-info">Modifier</a></td>
       <td>
       <form method="POST" action="{{ path('admin_delete', {'id': aliment.id}) }}" onsubmit="return confirm('Confirmer la supression')">

@@ -6,4 +6,8 @@ vich_uploader:
            uri_prefix: /image/aliments
            upload_destination: '%kernel.project_dir%/public/image/aliments'
            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+       type_image:
+           uri_prefix: /image/types
+           upload_destination: '%kernel.project_dir%/public/image/types'
+           namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
 

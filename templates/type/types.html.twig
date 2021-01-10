@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Types{% endblock %}
+
+   {% block titre %}Liste des types{% endblock %}
+
+{% block body %}
+<div class="row container d-flex justify-content-around m-auto">
+{% for type in types %}
+
+   <div class="card col-3" style="width: 18rem;">
+      <img src="{{ asset('/image/types/' ~ type.image) }}" style="max-height:150px;" class="mt-2 card-img-top" alt="{{ type.libelle }}">
+      <div class="card-body">
+         <h4 class="card-title row-cols-2 text-center">{{ type.libelle }}</h4>
+         <hr>
+            <h3>Aliments:</h3>
+         <ul>
+         {% for aliment in type.aliments %}
+            <li>{{ aliment.nom }}</li>
+         {% endfor %}
+         </ul>
+         <a href="{{ path('aliment', {'name': type.libelle }) }}" class="w-100 btn btn-primary">{{ type.libelle }}</a>
+      </div>
+   </div>
+
+{% endfor %}
+</div>
+{% endblock %}

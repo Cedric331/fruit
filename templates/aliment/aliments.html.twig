@@ -26,6 +26,7 @@
             <li>Proteine: {{ aliment.proteine }}</li>
             <li>Glucide: {{ aliment.glucide }}</li>
             <li>Lipide: {{ aliment.lipide }}</li>
+            <li>Type: {{ aliment.type.libelle }}</li>
          </ul>
          <a href="{{ path('aliment', {'name': aliment.nom }) }}" class="w-100 btn btn-primary">{{ aliment.nom   }}</a>
       </div>
